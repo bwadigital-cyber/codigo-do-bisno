@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Código Do Bisno | O Fim do Amadorismo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #060913;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.08);
+            background: rgba(6, 9, 19, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: #00f2fe;
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        .badge-live {
+            background: rgba(0, 242, 254, 0.06);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            color: #00f2fe;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-live i {
+            font-size: 7px;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.2; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.1); text-shadow: 0 0 8px #00f2fe; }
+            100% { opacity: 0.2; transform: scale(0.9); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 70px 0 90px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 242, 254, 0.12);
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+        }
+
+        .tagline {
+            color: #00f2fe;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: rgba(0, 242, 254, 0.05);
+            padding: 4px 16px;
+            border-radius: 4px;
+            border-left: 2px solid #00f2fe;
+        }
+
+        h1 {
+            font-size: 38px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            color: #94a3b8;
+            max-width: 650px;
+            margin: 0 auto 40px auto;
+            font-weight: 400;
+        }
+
+        /* Bloco de Preço e CTA Otimizado */
+        .price-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 30px 24px;
+            max-width: 380px;
+            margin: 0 auto;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .price-box::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            padding: 1px;
+            background: linear-gradient(to bottom, rgba(0, 242, 254, 0.2), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #475569;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .current-price {
+            font-size: 36px;
+            font-weight: 900;
+            color: #ffffff;
+            margin: 2px 0 15px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .current-price span {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00f2fe;
+        }
+
+        .cta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            color: #060913;
+            text-decoration: none;
+            padding: 18px 24px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.25);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 242, 254, 0.45);
+        }
+
+        .secure-notice {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .secure-notice i {
+            color: #10b981;
+        }
+
+        /* Secção de Conteúdo / Manifesto */
+        .manifesto-section {
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .manifesto-box {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .manifesto-box h2 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .manifesto-box p {
+            color: #94a3b8;
+            font-size: 15px;
+            margin-bottom: 16px;
+            font-weight: 300;
+            text-align: justify;
+        }
+
+        /* Pilares */
+        .pilares-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 50px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title span {
+            color: #00f2fe;
+        }
+
+        .grid-pilares {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .pilar-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 30px 24px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pilar-card:hover {
+            border-color: rgba(0, 242, 254, 0.2);
+            background: rgba(255, 255, 255, 0.02);
+            transform: translateY(-2px);
+        }
+
+        .pilar-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(0, 242, 254, 0.08);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00f2fe;
+            font-size: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+        }
+
+        .pilar-card h3 {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .pilar-card p {
+            font-size: 14px;
+            color: #94a3b8;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #03050a;
+            padding: 50px 0 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo span {
+            color: #00f2fe;
+        }
+
+        .suporte-link {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            transition: color 0.3s ease;
+            background: rgba(255,255,255,0.02);
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .suporte-link:hover {
+            color: #00f2fe;
+            border-color: rgba(0, 242, 254, 0.2);
+        }
+
+        .powered {
+            font-size: 11px;
+            color: #334155;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .powered span {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        /* Responsividade Adaptativa (Mobile-First) */
+        @media (min-width: 768px) {
+            h1 { font-size: 52px; max-width: 850px; margin-left: auto; margin-right: auto; }
+            .hero-desc { font-size: 17px; }
+            .grid-pilares { grid-template-columns: repeat(2, 1fr); }
+            .manifesto-box h2 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">CÓDIGO DO <span>BISNO</span></div>
+            <div class="badge-live">
+                <i class="fa-solid fa-circle"></i> VAGAS DISPONÍVEIS EM ANGOLA
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span class="tagline">O Fim do Amadorismo Digital</span>
+            <h1>O Teu Telemóvel Não É Uma Distração, É Uma <span>Máquina De Faturar</span></h1>
+            <p class="hero-desc">Para de queimar saldo nas redes sociais sem retorno. Descobre o método exato passo a passo para construir funis automáticos, gerar tráfego de elite e criar o teu próprio império digital a partir de Luanda.</p>
+            
+            <div class="price-box">
+                <div class="old-price">Preço Normal: 7.500 KZ</div>
+                <div class="current-price">2.500 <span>KZ</span></div>
+                <a href="https://pay.kursinha.com/c/69efe361905cfe388cb82cb3" class="cta-btn" target="_blank">
+                    <i class="fa-solid fa-bolt"></i> COMPRAR AGORA POR 2.500 KZ
+                </a>
+                <div class="secure-notice">
+                    <i class="fa-solid fa-shield-halved"></i> Acesso imediato após validação do pagamento.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="manifesto-section">
+        <div class="container">
+            <div class="manifesto-box">
+                <h2>Porquê o Código do Bisno?</h2>
+                <p>O mercado digital em Angola está cheio de amadores que acham que faturar na internet é apenas postar fotos no status ou implorar por transferências. O verdadeiro "bisno" não funciona assim. Quem ganha muito dinheiro trabalha nos bastidores, usando sistemas estruturados.</p>
+                <p>Este guia digital foi desenhado especificamente para a nossa realidade. Sem teorias difíceis ou ferramentas americanas caras. Aqui vais aprender a usar o que já tens na mão para gerar renda real e escalar o teu negócio com inteligência.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pilares-section">
+        <div class="container">
+            <h2 class="section-title">Os 4 Pilares do <span>Nosso Método</span></h2>
+            <div class="grid-pilares">
+                
+                <div class="pilar-card">
+                    <div class="pilar-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h3>1. Mentalidade Hacker</h3>
+                    <p>Esquece o uso comum do telefone. Vais aprender a reconfigurar os teus hábitos diários e a tua visão de mercado para identificar lacunas lucrativas e oportunidades de infoprodutos antes de toda a gente.</p>
+                </div>
+
+                <div class="pilar-card">
+                    <div class="pilar-icon"><i class="fa-solid fa-diagram-next"></i></div>
+                    <h3>2. Funis Ocultos de Vendas</h3>
+                    <p>A estratégia exata para estruturar páginas de captura e fluxos de mensagens que eliminam os curiosos e deixam apenas os clientes que estão prontos para fazer o Express ou a transferência.</p>
+                </div>
+
+                <div class="pilar-card">
+                    <div class="pilar-icon"><i class="fa-solid fa-square-share-nodes"></i></div>
+                    <h3>3. Tráfego de Alta Conversão</h3>
+                    <p>Como dominar os algoritmos orgânicos e os anúncios pagos. Atrai uma avalanche de pessoas qualificadas todos os dias para o teu link de vendas sem precisar de gastar fortunas em publicidade amadora.</p>
+                </div>
+
+                <div class="pilar-card">
+                    <div class="pilar-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <h3>4. Execução e Escala (90 Dias)</h3>
+                    <p>O teu plano de ação diário. Um cronograma cirúrgico focado no mercado local para tu saíres do absoluto zero, validares o teu produto e começares a multiplicar o teu faturamento mês após mês.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">CÓDIGO DO <span>BISNO</span></div>
+            <a href="mailto:suporte@bwadigital.com" class="suporte-link">
+                <i class="fa-solid fa-envelope"></i> Suporte Técnico: suporte@bwadigital.com
+            </a>
+            <div class="powered">Powered by <span>BWA DIGITAL</span></div>
+        </div>
+    </footer>
+
+</body>
+</html>
