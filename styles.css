@@ -1,0 +1,686 @@
+/* ===================================================
+   CODIGO DO BISNO - Variáveis e Reset Global
+   =================================================== */
+
+:root {
+    --primary-cyan: #00f2fe;
+    --primary-blue: #4facfe;
+    --dark-bg: #060913;
+    --darker-bg: #03050a;
+    --surface-100: rgba(255, 255, 255, 0.02);
+    --surface-200: rgba(255, 255, 255, 0.04);
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --text-strike: #475569;
+    --border-light: rgba(0, 242, 254, 0.08);
+    --border-hover: rgba(0, 242, 254, 0.2);
+    
+    /* Transições */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.8s ease;
+    
+    /* Sombras */
+    --shadow-sm: 0 4px 15px rgba(0,0,0,0.2);
+    --shadow-md: 0 20px 40px rgba(0,0,0,0.3);
+    --shadow-lg: 0 25px 50px rgba(0,0,0,0.4);
+    --shadow-glow: 0 0 15px rgba(0, 242, 254, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ===================================================
+   CONTAINER E LAYOUT BASE
+   =================================================== */
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ===================================================
+   HEADER
+   =================================================== */
+
+header {
+    padding: 25px 0;
+    border-bottom: 1px solid var(--border-light);
+    background: rgba(6, 9, 19, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    transition: all var(--transition-smooth);
+}
+
+.logo:hover {
+    color: var(--primary-cyan);
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+.logo span {
+    color: var(--primary-cyan);
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+.badge-live {
+    background: rgba(0, 242, 254, 0.06);
+    border: 1px solid var(--border-hover);
+    color: var(--primary-cyan);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.5px;
+    transition: all var(--transition-smooth);
+}
+
+.badge-live:hover {
+    background: rgba(0, 242, 254, 0.1);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+}
+
+.badge-live i {
+    font-size: 7px;
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(0.9);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+        text-shadow: 0 0 8px var(--primary-cyan);
+    }
+}
+
+/* ===================================================
+   HERO SECTION
+   =================================================== */
+
+.hero {
+    padding: 70px 0 90px 0;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: rgba(0, 242, 254, 0.12);
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+
+.tagline {
+    color: var(--primary-cyan);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    display: inline-block;
+    background: rgba(0, 242, 254, 0.05);
+    padding: 4px 16px;
+    border-radius: 4px;
+    border-left: 2px solid var(--primary-cyan);
+    animation: slideUp 0.6s ease-out 0.1s both;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+    animation: slideUp 0.6s ease-out 0.2s both;
+}
+
+h1 span {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-desc {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 650px;
+    margin: 0 auto 40px auto;
+    font-weight: 400;
+    line-height: 1.8;
+    animation: slideUp 0.6s ease-out 0.3s both;
+}
+
+/* ===================================================
+   PRICE BOX
+   =================================================== */
+
+.price-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 30px 24px;
+    max-width: 380px;
+    margin: 0 auto;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    position: relative;
+    transition: all var(--transition-smooth);
+    animation: slideUp 0.6s ease-out 0.4s both;
+}
+
+.price-box:hover {
+    border-color: rgba(0, 242, 254, 0.2);
+    box-shadow: 0 30px 60px rgba(0, 242, 254, 0.15);
+    transform: translateY(-10px);
+}
+
+.price-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(to bottom, rgba(0, 242, 254, 0.2), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: var(--text-strike);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.current-price {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin: 2px 0 15px 0;
+    letter-spacing: -0.5px;
+}
+
+.current-price span {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-cyan);
+}
+
+.cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    color: var(--dark-bg);
+    text-decoration: none;
+    padding: 18px 24px;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    transition: all var(--transition-smooth);
+    box-shadow: 0 8px 25px rgba(0, 242, 254, 0.25);
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 242, 254, 0.45);
+}
+
+.cta-btn:active {
+    transform: translateY(-1px);
+}
+
+.secure-notice {
+    font-size: 11px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    animation: fadeIn 0.8s ease-out 0.5s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.secure-notice i {
+    color: #10b981;
+}
+
+/* ===================================================
+   MANIFESTO SECTION
+   =================================================== */
+
+.manifesto-section {
+    padding: 60px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.manifesto-box {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.manifesto-box h2 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+.manifesto-box p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-bottom: 16px;
+    font-weight: 300;
+    text-align: justify;
+    line-height: 1.8;
+}
+
+/* ===================================================
+   PILARES SECTION
+   =================================================== */
+
+.pilares-section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 50px;
+    letter-spacing: -0.5px;
+    animation: slideUp 0.6s ease-out;
+}
+
+.section-title span {
+    color: var(--primary-cyan);
+}
+
+.grid-pilares {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.pilar-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 30px 24px;
+    border-radius: 20px;
+    transition: all var(--transition-smooth);
+    position: relative;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.pilar-card:nth-child(1) { animation-delay: 0.1s; }
+.pilar-card:nth-child(2) { animation-delay: 0.2s; }
+.pilar-card:nth-child(3) { animation-delay: 0.3s; }
+.pilar-card:nth-child(4) { animation-delay: 0.4s; }
+
+.pilar-card:hover {
+    border-color: var(--border-hover);
+    background: rgba(255, 255, 255, 0.02);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 242, 254, 0.15);
+}
+
+.pilar-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(0, 242, 254, 0.08);
+    border: 1px solid var(--border-hover);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-cyan);
+    font-size: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+    transition: all var(--transition-smooth);
+}
+
+.pilar-card:hover .pilar-icon {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
+}
+
+.pilar-card h3 {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+}
+
+.pilar-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* ===================================================
+   FOOTER
+   =================================================== */
+
+footer {
+    background: var(--darker-bg);
+    padding: 50px 0 40px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    text-align: center;
+    animation: slideUp 0.6s ease-out;
+}
+
+.footer-logo {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    transition: all var(--transition-smooth);
+}
+
+.footer-logo:hover {
+    color: var(--primary-cyan);
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+.footer-logo span {
+    color: var(--primary-cyan);
+}
+
+.suporte-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 30px;
+    transition: all var(--transition-smooth);
+    background: rgba(255, 255, 255, 0.02);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.suporte-link:hover {
+    color: var(--primary-cyan);
+    border-color: var(--border-hover);
+    background: rgba(0, 242, 254, 0.08);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+}
+
+.powered {
+    font-size: 11px;
+    color: #334155;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.powered span {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+/* ===================================================
+   RESPONSIVIDADE - TABLET
+   =================================================== */
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 52px;
+        max-width: 850px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-desc {
+        font-size: 17px;
+    }
+
+    .grid-pilares {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .manifesto-box h2 {
+        font-size: 32px;
+    }
+
+    .section-title {
+        font-size: 36px;
+    }
+}
+
+/* ===================================================
+   RESPONSIVIDADE - MOBILE
+   =================================================== */
+
+@media (max-width: 767px) {
+    header {
+        padding: 18px 0;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .badge-live {
+        padding: 5px 12px;
+        font-size: 10px;
+        gap: 6px;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .tagline {
+        font-size: 11px;
+        letter-spacing: 2px;
+        padding: 3px 12px;
+    }
+
+    .hero-desc {
+        font-size: 14px;
+        margin: 0 auto 30px auto;
+    }
+
+    .hero {
+        padding: 50px 0 60px 0;
+    }
+
+    .price-box {
+        padding: 25px 20px;
+        max-width: 100%;
+    }
+
+    .current-price {
+        font-size: 28px;
+    }
+
+    .current-price span {
+        font-size: 14px;
+    }
+
+    .cta-btn {
+        padding: 16px 20px;
+        font-size: 14px;
+        gap: 10px;
+    }
+
+    .pilar-card {
+        padding: 24px 18px;
+    }
+
+    .pilar-card h3 {
+        font-size: 17px;
+    }
+
+    .pilar-card p {
+        font-size: 13px;
+    }
+
+    .section-title {
+        font-size: 22px;
+        margin-bottom: 35px;
+    }
+
+    .manifesto-box h2 {
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+
+    .manifesto-box p {
+        font-size: 14px;
+        text-align: left;
+        margin-bottom: 14px;
+    }
+
+    .pilares-section {
+        padding: 60px 0;
+    }
+
+    .manifesto-section {
+        padding: 45px 0;
+    }
+
+    footer {
+        padding: 40px 0 30px 0;
+    }
+
+    .footer-logo {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .suporte-link {
+        font-size: 12px;
+        padding: 6px 12px;
+        margin-bottom: 20px;
+    }
+
+    .powered {
+        font-size: 10px;
+    }
+}
+
+/* ===================================================
+   PERFORMANCE - Otimizações
+   =================================================== */
+
+/* Reduzir animações em modo economizador */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark mode preferências do sistema */
+@media (prefers-color-scheme: dark) {
+    /* Já é dark por padrão */
+}
